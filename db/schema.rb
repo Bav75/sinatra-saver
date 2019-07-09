@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2019_07_09_174234) do
     t.string "name"
     t.decimal "goal_amount"
     t.decimal "current_amount"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_174234) do
     t.string "email"
     t.string "password_digest"
     t.decimal "account_balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

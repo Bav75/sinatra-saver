@@ -4,9 +4,8 @@ class CreateSavingsGoals < ActiveRecord::Migration[5.2]
       t.string :name
       t.decimal :goal_amount
       t.decimal :current_amount
-      t.datetime :created_at, null: false
-      t.datetime :updated_at, null: false 
       t.integer :user_id 
+      t.timestamps
     end
   end
 end
