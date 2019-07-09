@@ -5,6 +5,7 @@ class CreateSavingsGoals < ActiveRecord::Migration[5.2]
       t.decimal :goal_amount
       t.decimal :current_amount
       t.integer :user_id 
+      t.integer :transaction_id
       t.timestamps
     end
   end
