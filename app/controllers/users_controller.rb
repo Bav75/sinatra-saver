@@ -5,12 +5,12 @@ class UsersController < ApplicationController
         "Here are all of my users" 
     end
 
-    get '/signup' do 
-        erb :signup
+    get '/users/new' do 
+        erb :'/users/signup'
         #display form to signup new user
     end
 
-    post '/signup' do
+    post '/users' do
         #receives post data from
         #user signup form 
 
@@ -18,15 +18,18 @@ class UsersController < ApplicationController
         name = params[:name]
         pass = params[:password]
 
+        binding.pry
+
         #checking to see if alrdy logged in 
         #post data validity / checking 
 
         #if data valid then create & save 
-            @user = User.create({
+            @user = User.create(
                 name: name,
                 email: email,
-                password: pass
-            })
+                password: pass,
+                account_balance: 0
+            )
         #else
             #return to signup page & prompt for
             #valid data entry 
