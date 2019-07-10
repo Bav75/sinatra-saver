@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_07_09_192340) do
 
-  create_table "savings_goals", force: :cascade do |t|
+  create_table "goals", force: :cascade do |t|
     t.string "name"
     t.decimal "goal_amount"
     t.decimal "current_amount"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_192340) do
 
   create_table "transactions", force: :cascade do |t|
     t.decimal "amount"
-    t.integer "savings_goal_id"
+    t.integer "goal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

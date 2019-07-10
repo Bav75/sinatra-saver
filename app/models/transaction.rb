@@ -1,3 +1,3 @@
 class Transaction < ActiveRecord::Base
-    belongs_to :savings_goal
+    belongs_to :goal
 end

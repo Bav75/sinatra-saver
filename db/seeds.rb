@@ -3,7 +3,7 @@ User.create({
     password: "test", account_balance: 50
 })
 
-SavingsGoal.create({
+Goal.create({
     name: "test goal", goal_amount: 200, current_amount: 0
 })
 
