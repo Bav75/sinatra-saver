@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 
 
+    get '/users' do
+        "Here are all of my users" 
+    end
+
     get '/signup' do 
         erb :signup
         #display form to signup new user
@@ -63,16 +67,12 @@ class UsersController < ApplicationController
 
     end
 
-    
-
-    get '/users' do
-        "Here are all of my users" 
-    end
-
     get '/users/:user_id' do
 
         #show the users homepage
 
     end
+
+    
 
 end
