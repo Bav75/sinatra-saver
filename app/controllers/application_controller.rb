@@ -13,4 +13,6 @@ class ApplicationController < Sinatra::Base
         erb :homepage
     end
 
+    
+
 end
