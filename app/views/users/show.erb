@@ -5,10 +5,32 @@
   </head>
 
   <body>
-    <h1>Welcome to your profile!</h1>
+    <h1>Welcome <%=current_user.name%></h1>
 
 
+    <%# User Section %>
 
+    <h2>Your current balance: <%=current_user.account_balance%></h2>
+
+    <%# User - edit balance link %>
+
+    <a href="/users/<%=current_user.id%>/balance">Deposit funds to your account</a>
+
+    <br>
+    <br>
+
+    <%# Goals Section %>
+
+    <%# Goals - create new goal link %>
+
+    <a href="/goals/new">Create a new goal</a>
+
+    <br>
+    <br>
+
+    <%# Goals - view all goals link %>
+
+    <a href="/goals">View your goals</a>
 
 
     <%# Log out button %>

@@ -86,7 +86,19 @@ class UsersController < ApplicationController
             redirect '/login'
         end
     end
-
+    
+    get '/users/:user_id/balance' do
+        binding.pry
+        if logged_in?
+            if session[:user_id] == params[:user_id].to_i
+                erb :'/users/balance'
+            else
+                redirect '/'
+            end
+        else
+            redirect '/login'
+        end
+    end
     
 
 end
