@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     #display form to signup new user
     get '/users/new' do 
         if logged_in?
-            redirect '/users/:user_id'
+            redirect "/users/#{session[:user_id]}"
         else
             erb :'/users/signup'
         end
@@ -49,30 +49,25 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-
-        #receive login credentials
-
         email = params[:email]
         password = params[:password]
 
-        @user = User.find_by(email: email)
+        if email.empty? || password.empty?
+            redirect '/login'
+        else
+            @user = User.find_by(email: email)
 
-        # if @user && @user.authenticate(password)
-        #     session[:user_id] = @user.id
-
-        #if login credentials validated
-                #log user in by adding id 
-                #to session hash 
-
-                #redirect to users homepage 
-                #upon successful login
-            #else
-                
-
+            if @user && @user.authenticate(password)
+                session[:user_id] = @user.id
+                redirect "/users/#{@user.id}"
+            else
+                redirect '/login'
+            end
+        end 
     end
 
     get '/users/:user_id' do
-
+        "this is user #{session[:user_id]}'s page!"
         #show the users homepage
 
     end
