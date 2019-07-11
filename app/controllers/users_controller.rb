@@ -41,13 +41,11 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-
-        #if not already logged in
-            #display login page 
-        #else redirect to logged_in users
-        #page 
-            
-
+        if logged_in?
+            redirect '/users/:user_id'
+        else
+            erb :'/users/login'
+        end
     end
 
     post '/login' do
