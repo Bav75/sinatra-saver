@@ -9,34 +9,35 @@ class UsersController < ApplicationController
 
     #display form to signup new user
     get '/users/new' do 
-        erb :'/users/signup'
+        if logged_in?
+            redirect '/users/:user_id'
+        else
+            erb :'/users/signup'
+        end
     end
 
     post '/users' do
-        #receives post data from
-        #user signup form 
-
         email = params[:email]
         name = params[:name]
         pass = params[:password]
 
-        binding.pry
-
-        #checking to see if alrdy logged in 
-        #post data validity / checking 
-
-        #if data valid then create & save 
-            @user = User.create(
+        if email.empty? || name.empty? || pass.empty?
+            "Please enter the requested signup details"
+            redirect '/users/new'
+        else
+            @user = User.new(
                 name: name,
                 email: email,
                 password: pass,
                 account_balance: 0
             )
-        #else
-            #return to signup page & prompt for
-            #valid data entry 
 
-            #once created, redirect to login page 
+            if @user.save 
+                redirect '/login'
+            else
+                redirect '/users/new'
+            end
+        end
     end
 
     get '/login' do
