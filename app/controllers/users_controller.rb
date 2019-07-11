@@ -88,8 +88,8 @@ class UsersController < ApplicationController
     end
     
     get '/users/:user_id/balance' do
-        binding.pry
         if logged_in?
+            # replace if session[:id] with current_user 
             if session[:user_id] == params[:user_id].to_i
                 erb :'/users/balance'
             else
@@ -101,7 +101,18 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:user_id' do
-        
+        # binding.pry
+        if logged_in?
+            @user = User.find_by(id: params[:user_id])
+            if @user && (@user == current_user)
+                @user.update(account_balance: @user.account_balance + params[:account_balance].to_i)
+                redirect "/users/#{@user.id}"
+            else
+                redirect '/'
+            end
+        else
+            redirect '/login'
+        end
 
     end
     
