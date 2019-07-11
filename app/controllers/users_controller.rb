@@ -66,10 +66,25 @@ class UsersController < ApplicationController
         end 
     end
 
-    get '/users/:user_id' do
-        "this is user #{session[:user_id]}'s page!"
-        #show the users homepage
+    post '/logout' do
+        if logged_in?
+            session.clear
+            redirect '/login'
+        end
+    end
 
+    get '/users/:user_id' do
+        if logged_in?
+            #validate user is accessing only their profile page
+            if session[:user_id] == params[:user_id].to_i
+                erb :'/users/show'
+            #kick them to homepage if not 
+            else
+                redirect '/'
+            end
+        else
+            redirect '/login'
+        end
     end
 
     
