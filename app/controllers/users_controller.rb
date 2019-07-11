@@ -87,6 +87,19 @@ class UsersController < ApplicationController
         end
     end
     
+    get '/users/:user_id/edit' do
+        if logged_in?
+            @user = User.find_by(id: params[:user_id])
+            if @user && (@user == current_user)
+                erb :'/users/edit'
+            else
+                redirect '/'
+            end
+        else
+            redirect '/login'
+        end
+    end
+
     get '/users/:user_id/balance' do
         if logged_in?
             # replace if session[:id] with current_user 

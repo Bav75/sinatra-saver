@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit account</title>
+  </head>
+
+  <body>
+    <form action="/users/<%=current_user.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <h1>Enter updated account details below:</h1>
+
+    <br>
+
+    <p>Email:<input type="text" name="email"></p>
+
+    <input type="submit" name="Update" value="Update">
+    </form>
+
+    <%# add delete account option here %>
+  </body>
+</html>
