@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users</title>
+  </head>
+
+  <body>
+    <h1>Sinatra Saver users:</h1>
+
+    <br>
+
+    <% @users.each.with_index(1) do |user, i| %>
+        <p><%="#{i}. #{user.name}"%></p>
+   <% end %>
+  </body>
+</html>

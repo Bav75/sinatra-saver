@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
 
 
+    #display index of users 
     get '/users' do
-        "Here are all of my users" 
+        @users = User.all
+        erb :'/users/index' 
     end
 
+    #display form to signup new user
     get '/users/new' do 
         erb :'/users/signup'
-        #display form to signup new user
     end
 
     post '/users' do
