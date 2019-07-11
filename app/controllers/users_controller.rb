@@ -114,7 +114,6 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:user_id' do
-        # binding.pry
         if logged_in?
             @user = User.find_by(id: params[:user_id])
             if @user && (@user == current_user)
@@ -130,7 +129,20 @@ class UsersController < ApplicationController
         else
             redirect '/login'
         end
+    end
 
+    delete '/users/:user_id' do
+        if logged_in?
+            @user = User.find_by(id: params[:user_id])
+            if @user && (@user == current_user)
+                @user.delete
+                redirect '/signup'
+            else
+                redirect '/users/new'
+            end
+        else
+            redirect '/login'
+        end
     end
     
 

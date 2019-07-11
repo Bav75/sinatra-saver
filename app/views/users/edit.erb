@@ -17,6 +17,18 @@
     <input type="submit" name="Update" value="Update">
     </form>
 
-    <%# add delete account option here %>
+    <br>
+    <br>
+
+    <%# Delete account form %>
+
+    <form action="/users/<%=current_user.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+    <p>Close your Sinatra Saver account?</p>
+    
+    <input type="submit" name="Close account" value="Close account">
+    </form>
+
   </body>
 </html>
