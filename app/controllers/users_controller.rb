@@ -118,7 +118,11 @@ class UsersController < ApplicationController
         if logged_in?
             @user = User.find_by(id: params[:user_id])
             if @user && (@user == current_user)
-                @user.update(account_balance: @user.account_balance + params[:account_balance].to_i)
+                if params[:account_balance]
+                    @user.update(account_balance: @user.account_balance + params[:account_balance].to_i)
+                elsif params[:email]
+                    @user.update(email: params[:email])
+                end
                 redirect "/users/#{@user.id}"
             else
                 redirect '/'
