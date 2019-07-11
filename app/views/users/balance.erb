@@ -1,1 +1,20 @@
-<h1>Add munnies?</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit balance</title>
+  </head>
+
+  <body>
+    <form action="/users/<%=current_user.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <h1>Enter the amount of funds to deposit:</h1>
+
+    <br>
+
+    <p><input type="number" name="account_balance"></p>
+
+    <input type="submit" name="Deposit funds" value="Deposit funds">
+    </form>
+  </body>
+</html>

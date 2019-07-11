@@ -99,6 +99,11 @@ class UsersController < ApplicationController
             redirect '/login'
         end
     end
+
+    patch '/users/:user_id' do
+        
+
+    end
     
 
 end
