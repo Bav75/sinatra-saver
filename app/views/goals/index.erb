@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Your Goals</title>
+    <title>Sinatra Saver Goals</title>
   </head>
 
   <body>
@@ -11,6 +11,7 @@
 
     <% @goals.each.with_index(1) do |goal, i| %>
         <p><%="#{i}. #{goal.name}"%></p>
+        <p><%="#{goal.user.name}"%></p>
         <p><%="#{goal.goal_amount}"%></p>
         <p><%="#{goal.current_amount}"%></p>
    <% end %>

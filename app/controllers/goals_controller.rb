@@ -1,7 +1,8 @@
 class GoalsController < ApplicationController
 
    get '/goals' do
-    erb :index
+    @goals = Goal.all
+    erb :'/goals/index'
    end
 
    get '/goals/new' do
@@ -27,5 +28,19 @@ class GoalsController < ApplicationController
         end
     end
    end
+
+   get '/goals/:goal_id' do
+    if logged_in?
+        @goal = Goal.find_by(id: params[:goal_id])
+        if @goal && (@goal.user == current_user)
+            erb :'/goals/show'
+        else
+            redirect '/'
+        end
+    else
+        redirect '/login'
+    end 
+   end
+
 
 end
