@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit goal</title>
+  </head>
+
+  <body>
+    <form action="/goals/<%=@goal.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <h1>Enter updated goal details below:</h1>
+
+    <br>
+
+    <p>Goal name:<input type="text" name="name" value="<%=@goal.name%>"> </p>
+    <p>Goal target amount:<input type="number" name="goal_amount" value="<%=@goal.goal_amount%>"> </p>
+
+    <input type="submit" name="Update" value="Update">
+    </form>
+
+    <br>
+    <br>
+
+    <%# Delete goal form %>
+
+    <form action="/goals/<%=current_user.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+    <p>Delete this goal?</p>
+    
+    <input type="submit" name="Delete goal" value="Delete goal">
+    </form>
+
+  </body>
+</html>
