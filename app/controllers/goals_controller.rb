@@ -47,5 +47,26 @@ class GoalsController < ApplicationController
     end 
    end
 
+   patch '/goals/:goal_id' do
+    if logged_in?
+        @goal = Goal.find_by(id: params[:goal_id])
+        if @goal && (@goal.user == current_user)
+            if params[:contribution]
+                @goal.update(current_amount: @goal.current_amount + params[:contribution].to_i)
+            else
+                @goal.update(
+                    name: params[:name],
+                    goal_amount: params[:goal_amount]
+                )
+            end
+            redirect "/goals/#{@goal.id}"
+        else
+            redirect '/'
+        end
+    else
+        redirect '/login'
+    end
+   end
+
 
 end

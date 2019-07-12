@@ -1,1 +1,36 @@
-<h1>Here's a goal!</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=@goal.name%></title>
+  </head>
+
+  <body>
+    <h1>Your goal: <%=@goal.name%></h1>
+
+    <p>
+    Goal target: <%="$#{@goal.goal_amount}"%>
+    <br>
+    Current amount saved: <%="$#{@goal.current_amount}"%>
+    <br>
+    Progress towards goal: <%="#{(@goal.current_amount / @goal.goal_amount) * 100}%"%>
+    </p>
+
+    <%# Contribute to goal form %>
+
+    <form action="/goals/<%=@goal.id%>" method="POST">
+        <p>Contribute to this goal</p>
+
+        <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+        <input type="number" name="contribution">
+        <input type="submit" name="Contribute" value="Contribute">
+    </form>
+
+    <%# Edit goal link %>
+
+    <br>
+
+    <a href="/goals/<%=@goal.id%>/edit">Edit this goal</a>
+   
+  </body>
+</html>
