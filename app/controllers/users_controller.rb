@@ -75,10 +75,9 @@ class UsersController < ApplicationController
 
     get '/users/:user_id' do
         if logged_in?
-            #validate user is accessing only their profile page
-            if session[:user_id] == params[:user_id].to_i
+            @user = User.find_by(id: params[:user_id])
+            if @user && (@user == current_user)
                 erb :'/users/show'
-            #kick them to homepage if not 
             else
                 redirect '/'
             end
@@ -102,8 +101,8 @@ class UsersController < ApplicationController
 
     get '/users/:user_id/balance' do
         if logged_in?
-            # replace if session[:id] with current_user 
-            if session[:user_id] == params[:user_id].to_i
+            @user = User.find_by(id: params[:user_id])
+            if @user && (@user == current_user)
                 erb :'/users/balance'
             else
                 redirect '/'

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Goals</title>
+  </head>
+
+  <body>
+    <h1>Your current financial goals:</h1>
+
+    <br>
+
+    <% @goals.each.with_index(1) do |goal, i| %>
+        <p><%="#{i}. #{goal.name}"%></p>
+        <p><%="#{goal.goal_amount}"%></p>
+        <p><%="#{goal.current_amount}"%></p>
+   <% end %>
+  </body>
+</html>
