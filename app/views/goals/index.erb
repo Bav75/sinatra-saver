@@ -10,8 +10,7 @@
     <br>
 
     <% @goals.each.with_index(1) do |goal, i| %>
-        <p><%="#{i}. #{goal.name}"%></p>
-        <p><%="#{goal.user.name}"%></p>
+        <a href="/goals/<%=goal.id%>"><%="#{i}. #{goal.name}"%></a>
         <p><%="#{goal.goal_amount}"%></p>
         <p><%="#{goal.current_amount}"%></p>
    <% end %>

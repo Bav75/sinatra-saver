@@ -1,7 +1,12 @@
 class GoalsController < ApplicationController
 
    get '/goals' do
-    @goals = Goal.all
+    @goals = []
+    Goal.all.each do |goal|
+        if goal.user == current_user
+            @goals << goal
+        end
+    end
     erb :'/goals/index'
    end
 
