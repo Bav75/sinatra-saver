@@ -82,4 +82,21 @@ class GoalsController < ApplicationController
    end
 
 
+   delete '/goals/:goal_id' do
+    if logged_in?
+        @goal = Goal.find_by(id: params[:goal_id])
+        binding.pry
+        if @goal && (@goal.user == current_user)
+            @goal.delete
+            redirect '/goals'
+        else
+            redirect "/users/#{current_user.id}"
+        end
+    else
+        redirect '/login'
+    end
+   end
+
+
+
 end
