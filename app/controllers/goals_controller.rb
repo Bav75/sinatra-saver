@@ -73,7 +73,6 @@ class GoalsController < ApplicationController
                     end
                 end
                 @goal.update(current_amount: @transaction_total)
-                # @goal.update(current_amount: @goal.current_amount + params[:contribution].to_i)
             else
                 @goal.update(
                     name: params[:name],
