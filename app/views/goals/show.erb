@@ -12,7 +12,7 @@
     <br>
     Current amount saved: <%="$#{@goal.current_amount}"%>
     <br>
-    Progress towards goal: <%="#{(@goal.current_amount / @goal.goal_amount) * 100}%"%>
+    Progress towards goal: <%="#{((@goal.current_amount / @goal.goal_amount) * 100).round(2)}%"%>
     </p>
 
     <%# Contribute to goal form %>
