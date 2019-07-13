@@ -22,7 +22,7 @@
 
         <input id="hidden" type="hidden" name="_method" value="PATCH">
 
-        <input type="number" name="contribution">
+        <input type="number" min="0.01" step="0.01" max="1000000" name="contribution">
         <input type="submit" name="Contribute" value="Contribute">
     </form>
 
@@ -31,6 +31,20 @@
     <br>
 
     <a href="/goals/<%=@goal.id%>/edit">Edit this goal</a>
+
+    <%# View transactions %>
+
+    <p>
+    You've made a total of <%=@goal.transactions.count%> contributions towards this goal
+    <%# can use positive? / negative? methods later to show contribution vs withdrawal %>
+
+    <ol>
+    <% @goal.transactions.each do |transaction| %>
+        <li><%= "$#{(transaction.amount)} on #{transaction.created_at}"%></li>
+    <% end %>
+    </ol>
+    </p>
+
    
   </body>
 </html>

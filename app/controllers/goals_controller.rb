@@ -65,7 +65,7 @@ class GoalsController < ApplicationController
         @goal = Goal.find_by(id: params[:goal_id])
         if @goal && (@goal.user == current_user)
             if params[:contribution]
-                @goal.transactions.create(amount: params[:contribution].to_i)
+                @goal.transactions.create(amount: params[:contribution].to_d)
                 @transaction_total = 0 
                 Transaction.all.each do |transaction|
                     if transaction.goal == @goal
