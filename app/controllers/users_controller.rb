@@ -22,7 +22,8 @@ class UsersController < ApplicationController
         pass = params[:password]
 
         if email.empty? || name.empty? || pass.empty?
-            "Please enter the requested signup details"
+            flash[:alert] = "Please enter the requested signup details"
+            # binding.pry
             redirect '/users/new'
         else
             @user = User.new(

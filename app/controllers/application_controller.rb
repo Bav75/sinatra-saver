@@ -1,9 +1,12 @@
 require "./config/environment"
 
+
 class ApplicationController < Sinatra::Base
 
     configure do 
         enable :sessions
+
+        register Sinatra::Flash
 
         set :public_folder, "public"
         set :session_secret, "test"

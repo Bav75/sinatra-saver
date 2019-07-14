@@ -20,5 +20,11 @@
     <input type="submit" name="Sign up" value="Sign up">
     </form>
     </div>
+
+  <% flash.keys.each do |type| %>
+      <div class="flash alerts">
+        <%= flash[type] %>
+      </div>
+  <% end %>
   </body>
 </html>
