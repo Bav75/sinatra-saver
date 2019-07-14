@@ -2,9 +2,12 @@
 <html>
   <head>
     <title>Sign up</title>
+    <meta charset="UTF-8">
+    <link href="<%= url('/css/users/signup.css') %>" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
+    <div class="page">
     <form action="/users" method="POST">
     <h1>New to Sinatra Saver? Sign up below!</h1>
 
@@ -16,5 +19,6 @@
 
     <input type="submit" name="Sign up" value="Sign up">
     </form>
+    </div>
   </body>
 </html>
