@@ -2,9 +2,19 @@
 <html>
   <head>
     <title>Welcome to Sinatra Saver!</title>
+    <meta charset="UTF-8">
+    <link href="<%= url('/css/homepage.css') %>" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    Welcome to Sinatra Saver
+    <div class="page">
+    <h1>
+    Welcome to Sinatra Saver: Your source for financial tracking 
+    </h1>
+
+      <a href="/users/new">New to Sinatra Saver? Sign up today!</a>
+      <br>
+      <a href="/login">Log in to Sinatra Saver</a>
+    </div>
   </body>
 </html>
