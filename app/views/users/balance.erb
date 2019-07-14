@@ -2,9 +2,12 @@
 <html>
   <head>
     <title>Edit balance</title>
+    <link href="<%= url('/css/users/balance.css') %>" rel="stylesheet" type="text/css" />
+
   </head>
 
   <body>
+    <div class="page">
     <form action="/users/<%=current_user.id%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
 
@@ -16,5 +19,12 @@
 
     <input type="submit" name="Deposit funds" value="Deposit funds">
     </form>
+    </div>
+
+    <div class="headers">
+    <ul>
+      <a href="/users/<%=@current_user.id%>">Return to profile page</a>
+    </ul>
+    </div>
   </body>
 </html>
