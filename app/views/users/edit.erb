@@ -2,9 +2,12 @@
 <html>
   <head>
     <title>Edit account</title>
+    <meta charset="UTF-8">
+    <link href="<%= url('/css/users/edit.css') %>" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
+    <div class="page">
     <form action="/users/<%=current_user.id%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
 
@@ -29,6 +32,13 @@
     
     <input type="submit" name="Close account" value="Close account">
     </form>
+    </div>
+
+     <div class="headers">
+     <ul>
+      <a href="/users/<%=current_user.id%>">Return to profile page</a>
+    </ul>
+    </div>
 
   </body>
 </html>
