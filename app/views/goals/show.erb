@@ -56,5 +56,12 @@
     </ul>
    </div>
 
+   <% flash.keys.each do |type| %>
+    <div class="flash alerts">
+      <%= flash[type] %>
+      <a href="" class="close">&times;</a>
+    </div>
+  <% end %>
+
   </body>
 </html>

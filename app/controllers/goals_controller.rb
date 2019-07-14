@@ -65,14 +65,20 @@ class GoalsController < ApplicationController
         @goal = Goal.find_by(id: params[:goal_id])
         if @goal && (@goal.user == current_user)
             if params[:contribution]
-                @goal.transactions.create(amount: params[:contribution].to_d)
-                @transaction_total = 0 
-                Transaction.all.each do |transaction|
-                    if transaction.goal == @goal
-                        @transaction_total += transaction.amount
+                if params[:contribution].to_d > @goal.user.account_balance
+                    flash[:alert] = "Insufficient funds in account. Your current balance is $#{@goal.user.account_balance}."
+                    redirect "/goals/#{@goal.id}"
+                else
+                    @goal.transactions.create(amount: params[:contribution].to_d)
+                    @transaction_total = 0 
+                    Transaction.all.each do |transaction|
+                        if transaction.goal == @goal
+                            @transaction_total += transaction.amount
+                        end
                     end
+                    @goal.update(current_amount: @transaction_total)
+                    @goal.user.update(account_balance: @goal.user.account_balance - params[:contribution].to_d)
                 end
-                @goal.update(current_amount: @transaction_total)
             else
                 @goal.update(
                     name: params[:name],

@@ -1,16 +1,8 @@
 class UsersController < ApplicationController
 
-
-    #display index of users 
-    get '/users' do
-        @users = User.all
-        erb :'/users/index' 
-    end
-
-    #display form to signup new user
     get '/users/new' do 
         if logged_in?
-            redirect "/users/#{session[:user_id]}"
+            redirect "/users/#{current_user.id}"
         else
             erb :'/users/signup'
         end
@@ -23,7 +15,6 @@ class UsersController < ApplicationController
 
         if email.empty? || name.empty? || pass.empty?
             flash[:alert] = "Please enter the requested signup details"
-            # binding.pry
             redirect '/users/new'
         else
             @user = User.new(
@@ -32,7 +23,6 @@ class UsersController < ApplicationController
                 password: pass,
                 account_balance: 0
             )
-
             if @user.save 
                 redirect '/login'
             else
@@ -43,7 +33,7 @@ class UsersController < ApplicationController
 
     get '/login' do
         if logged_in?
-            redirect '/users/:user_id'
+            redirect "/users/#{current_user.id}"
         else
             erb :'/users/login'
         end
