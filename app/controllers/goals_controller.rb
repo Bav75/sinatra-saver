@@ -27,7 +27,7 @@ class GoalsController < ApplicationController
             current_amount: 0
         )
         if @goal.save 
-            redirect '/goals/:goal_id'
+            redirect "/goals/#{@goal.id}"
         else
             redirect '/goals/new'
         end
