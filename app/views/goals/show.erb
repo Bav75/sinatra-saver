@@ -7,6 +7,7 @@
   </head>
 
   <body>
+    <div class="page">
     <h1>Your goal: <%=@goal.name%></h1>
 
     <p>
@@ -46,7 +47,14 @@
     <% end %>
     </ol>
     </p>
+   </div>
 
-   
+   <div class="headers">
+   <ul>
+    <a href="/users/<%=@current_user.id%>">Return to profile page</a>
+    <a href="/goals">Return to your list of goals</a>
+    </ul>
+   </div>
+
   </body>
 </html>
