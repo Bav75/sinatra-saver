@@ -7,6 +7,7 @@
   </head>
 
   <body>
+
     <div class="page">
     <form action="/users/<%=current_user.id%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
@@ -23,8 +24,9 @@
 
     <div class="headers">
     <ul>
-      <a href="/users/<%=@current_user.id%>">Return to profile page</a>
+      <a href="/users/<%=current_user.id%>">Return to profile page</a>
     </ul>
+
     </div>
   </body>
 </html>
