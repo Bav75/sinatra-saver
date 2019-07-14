@@ -69,15 +69,29 @@ class GoalsController < ApplicationController
                     flash[:alert] = "Insufficient funds in account. Your current balance is $#{@goal.user.account_balance}."
                     redirect "/goals/#{@goal.id}"
                 else
-                    @goal.transactions.create(amount: params[:contribution].to_d)
                     @transaction_total = 0 
                     Transaction.all.each do |transaction|
                         if transaction.goal == @goal
                             @transaction_total += transaction.amount
                         end
                     end
-                    @goal.update(current_amount: @transaction_total)
-                    @goal.user.update(account_balance: @goal.user.account_balance - params[:contribution].to_d)
+                    if (params[:contribution].to_d + @transaction_total) < @goal.goal_amount
+                        @goal.transactions.create(amount: params[:contribution].to_d)
+                        @transaction_total += Transaction.last.amount
+                        @goal.update(current_amount: @transaction_total)
+                        @goal.user.update(account_balance: @goal.user.account_balance - params[:contribution].to_d)
+                    else
+                        over_contribution = (params[:contribution].to_d - ((@transaction_total + params[:contribution].to_d) - @goal.goal_amount))
+                        if over_contribution == 0
+                            flash[:alert] = "This goal has already reached 100%. Funds were not contributed."
+                            redirect "/goals/#{@goal.id}"
+                        else
+                            @goal.transactions.create(amount: over_contribution)
+                            @transaction_total += over_contribution
+                            @goal.update(current_amount: @transaction_total)
+                            @goal.user.update(account_balance: @goal.user.account_balance - over_contribution)
+                        end
+                    end
                 end
             else
                 @goal.update(
