@@ -126,7 +126,7 @@ class UsersController < ApplicationController
             @user = User.find_by(id: params[:user_id])
             if @user && (@user == current_user)
                 @user.delete
-                redirect '/signup'
+                redirect '/users/new'
             else
                 redirect '/users/new'
             end
